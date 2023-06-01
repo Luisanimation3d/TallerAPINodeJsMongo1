@@ -1,15 +1,15 @@
 const { response } = require('express');
-const Inmueble = require('../models/InmueblesModel');
+const Propietario = require('../models/PropietarioModel');
 
-const getInmuebles = async (req, res = response) => {
+const getPropietario = async (req, res = response) => {
 	let mensaje = '';
 	try {
-		const inmuebles = await Inmueble.find();
+		const propietarios = await Propietario.find();
 		mensaje = 'Consulta exitosa';
 		res.json({
 			ok: true,
 			mensaje,
-			inmuebles,
+			propietarios,
 		});
 	} catch (error) {
 		mensaje = 'Error en la consulta';
@@ -20,19 +20,19 @@ const getInmuebles = async (req, res = response) => {
 	}
 };
 
-const postInmueble = async (req, res = response) => {
+const postPropietario = async (req, res = response) => {
 	let mensaje = '';
 	const body = req.query;
-	const inmueble = new Inmueble(body);
+	const propietario = new Propietario(body);
 	try {
-		await inmueble.save();
-		mensaje = 'Inmueble creado exitosamente';
+		await propietario.save();
+		mensaje = 'Propietario creado exitosamente';
 		res.json({
 			ok: true,
 			mensaje,
 		});
 	} catch (error) {
-		mensaje = 'Error al crear el inmueble';
+		mensaje = 'Error al crear el propietario';
 		console.log(error);
 		res.json({
 			ok: false,
@@ -42,6 +42,6 @@ const postInmueble = async (req, res = response) => {
 };
 
 module.exports = {
-	getInmuebles,
-	postInmueble,
+	getPropietario,
+	postPropietario,
 };
