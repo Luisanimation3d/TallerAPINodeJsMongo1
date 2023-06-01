@@ -33,7 +33,6 @@ const postInmueble = async (req, res = response) => {
 		});
 	} catch (error) {
 		mensaje = 'Error al crear el inmueble';
-		console.log(error);
 		res.json({
 			ok: false,
 			mensaje,

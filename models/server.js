@@ -8,6 +8,7 @@ class Server {
         this.port = process.env.PORT || 3000;
         this.inmueblesPath = '/api/inmuebles';
         this.propietariosPath = '/api/propietarios';
+        this.personasPath = '/api/personas';
 
         // Middlewares
         this.middlewares();
@@ -27,6 +28,7 @@ class Server {
     routes() {
         this.app.use(this.inmueblesPath, require('../routes/inmuebleRoutes'));
         this.app.use(this.propietariosPath, require('../routes/propietarioRoutes'));
+        this.app.use(this.personasPath, require('../routes/personaRoutes'));
     }
 
     async conectarDB() {

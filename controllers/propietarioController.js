@@ -33,7 +33,6 @@ const postPropietario = async (req, res = response) => {
 		});
 	} catch (error) {
 		mensaje = 'Error al crear el propietario';
-		console.log(error);
 		res.json({
 			ok: false,
 			mensaje,
