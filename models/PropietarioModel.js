@@ -3,6 +3,7 @@ const { Schema, model } = require('mongoose');
 const PropietarioSchema = Schema({
     documento:{
         type: Number,
+        unique: true,
         required: [true, 'El documento es obligatorio']
     },
     tipoDocumento:{

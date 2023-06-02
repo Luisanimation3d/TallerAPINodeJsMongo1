@@ -58,11 +58,55 @@ const postPersona = async (req, res = response) => {
         res.json({
             ok: false,
             mensaje,
+			error
         });
     }
 }
 
+const putPersona = async (req, res) => {
+	let mensaje = ''
+	let {nombreCompleto, ...body} = req.query
+	// console.log(nombreCompleto, {...body})
+	try{
+		await Persona.findOneAndUpdate({nombreCompleto}, {...body})
+		mensaje = 'Persona actualizada exitosamente'
+		res.json({
+            ok: true,
+            mensaje,
+        });
+	}catch(error){
+		mensaje = 'Error al actualizar la persona';
+        res.json({
+            ok: false,
+            mensaje,
+			error
+        });
+	}
+}
+
+const deletePersona = async (req, res) => {
+	let mensaje = ''
+	let {nombreCompleto} = req.query
+	try{
+		await Persona.findOneAndDelete({nombreCompleto})
+		mensaje = 'Persona eliminada exitosamente'
+		res.json({
+            ok: true,
+            mensaje,
+        });
+	}catch(error){
+		mensaje = 'Error al eliminar la persona';
+        res.json({
+            ok: false,
+            mensaje,
+			error
+        });
+	}
+}
+
 module.exports = {
 	getPersona,
-    postPersona
+    postPersona,
+	putPersona,
+	deletePersona
 };
