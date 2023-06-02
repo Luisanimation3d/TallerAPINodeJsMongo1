@@ -3,6 +3,7 @@ const { Schema, model } = require('mongoose');
 const InmuebleSchema = Schema({
     direccion: {
         type: String,
+        unique: true,
         required: [true, 'La dirección es obligatoria']
     },
     tipoInmueble:{

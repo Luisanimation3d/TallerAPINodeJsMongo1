@@ -7,6 +7,7 @@ const PersonasSchema = Schema({
     },
     nombreCompleto:{
         type: String,
+        unique: true,
         required: [true, 'El nombre es obligatorio']
     },
     genero:{

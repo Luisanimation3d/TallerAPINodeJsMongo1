@@ -16,6 +16,7 @@ const getPropietario = async (req, res = response) => {
 		res.json({
 			ok: false,
 			mensaje,
+			error
 		});
 	}
 };
@@ -36,6 +37,48 @@ const postPropietario = async (req, res = response) => {
 		res.json({
 			ok: false,
 			mensaje,
+			error
+		});
+	}
+};
+
+const putPropietario = async (req, res = response) => {
+	let mensaje = '';
+	const {documento, ...body} = req.query;
+	try {
+		await Propietario.findByIdAndUpdate({documento}, {...body});
+		mensaje = 'Propietario actualizado exitosamente';
+		res.json({
+			ok: true,
+			mensaje,
+		});
+	} catch (error) {
+		mensaje = 'Error al actualizar el propietario';
+		res.json({
+			ok: false,
+			mensaje,
+			error
+		});
+	}
+};
+
+const deletePropietario = async (req, res = response) => {
+	let mensaje = '';
+	const {documento} = req.query;
+	try {
+		await Propietario.findOneAndDelete({documento})
+		mensaje = 'Propietario eliminado exitosamente';
+		res.json({
+			ok: true,
+			mensaje,
+			error
+		});
+	} catch (error) {
+		mensaje = 'Error al eliminar el propietario';
+		res.json({
+			ok: false,
+			mensaje,
+			error
 		});
 	}
 };
@@ -43,4 +86,6 @@ const postPropietario = async (req, res = response) => {
 module.exports = {
 	getPropietario,
 	postPropietario,
+	putPropietario,
+	deletePropietario
 };
